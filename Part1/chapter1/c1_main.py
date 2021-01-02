@@ -21,15 +21,18 @@ class Aggregate(metaclass=ABCMeta):
 
 
 class Iterator(metaclass=ABCMeta):
-    '要素の数え上げを行うような、ループ変数を表すクラス'
+    '''
+    要素の数え上げを行うような、ループ変数を表すクラス。
+    '''
+    # 抽象クラス
     @abstractmethod
     def has_next(self):
-        '次の要素が存在するか'
+        '次の要素が存在するかの関数'
         pass
 
     @abstractmethod
     def next(self):
-        '次の要素を返す'
+        '次の要素を返す関数'
         pass
 
 class Book:
@@ -42,7 +45,7 @@ class Book:
         
 class BookShelf(Aggregate):
     '''
-    本棚を表すクラス。このクラスを集合体として扱うのでaggrigateインターフェイスを実装。
+    本棚を表すクラス。このクラスを集合体として扱うのでaggregateインターフェイスを実装。
     この本棚はbookフィールドを持つ。
     配列の大きさはBookShelfインスタンスを作成するときに指定。
     '''
@@ -63,7 +66,11 @@ class BookShelf(Aggregate):
 
     def get_length(self):
         '本がどれくらい保存されているか返す関数'
-        # lenではだめなのか？
+        '''
+        lenではだめなのか？
+        https://medium.com/since-i-want-to-start-blog-that-looks-like-men-do/python%E3%81%AB%E3%82%88%E3%82%8B%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3-iteratory-9a9d94ded3a9
+        lenで書いているものあった
+        '''
         return self.__last
 
     def iterator(self):
@@ -73,6 +80,8 @@ class BookShelf(Aggregate):
 
 class BookShelfIterator(Iterator):
     '''
+    oncreat iterator(具体的な反復子)役。
+    抽象クラスを継承している。
     BookShelfクラスのスキャンを行うクラス
     BookShelfクラスと分けるのは再利用しやすくするため
     '''
