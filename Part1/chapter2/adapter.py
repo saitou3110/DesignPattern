@@ -3,6 +3,11 @@ from abc import ABCMeta, abstractmethod
 継承を使ったもの
 '''
 def main():
+    '''
+    あくまでPrintというインターフェイスを使っているだけ。
+    show_with_hogeは見えないようにしてある。
+    PrintBannerがどうなっているかmainは知らなくてもいい。
+    '''
     p = PrintBanner('Hello')
     p.print_weak()
     p.print_string()
@@ -27,6 +32,7 @@ class Print(metaclass=ABCMeta):
     def print_string(self):
         pass
     
+# Bannerクラスを継承、printインターフェイスを実装
 class PrintBanner(Print):
     def __init__(self, string):
         self.__banner = Banner(string)
