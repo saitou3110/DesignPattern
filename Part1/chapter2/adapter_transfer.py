@@ -1,13 +1,6 @@
 from abc import ABCMeta, abstractmethod
-'''
-継承を使ったもの
-'''
+
 def main():
-    '''
-    あくまでPrintというインターフェイスを使っているだけ。
-    show_with_hogeは見えないようにしてある。
-    PrintBannerがどうなっているかmainは知らなくてもいい。
-    '''
     p = PrintBanner('Hello')
     p.print_weak()
     p.print_string()
@@ -21,8 +14,8 @@ class Banner:
 
     def show_with_aster(self):
         print('*{}*'.format(self.__string))
-
-# Printインターフェイス。抽象クラス。
+# ここまで継承のものと同じ
+# Printクラスは、javaではインターフェイスとクラスで変わっているが、pythonだと変わらない
 class Print(metaclass=ABCMeta):
     @abstractmethod
     def print_weak(self):
@@ -31,9 +24,8 @@ class Print(metaclass=ABCMeta):
     @abstractmethod
     def print_string(self):
         pass
-    
-# Bannerクラスを継承、printインターフェイスを実装
-class PrintBanner(Print, Banner):
+
+class PrintBanner(Print):
     def __init__(self, string):
         self.__banner = Banner(string)
 
