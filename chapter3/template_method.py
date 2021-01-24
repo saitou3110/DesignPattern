@@ -39,21 +39,21 @@ class CharDisplay(AbstractDisplay):# CharDisplayはAbstractDisplayのサブク�
     def close(self):# closeメソッドもここで実装
         print('>>')# 終了文字">>"を表示
 
-class StringDisplay(AbstractDisplay):
+class StringDisplay(AbstractDisplay):# AbstractDisplayのサブクラス
     def __init__(self, string):
-        self.string = string
-        self.width =len(string.encode())
+        self.string = string# 表示するべき文字列
+        self.width =len(string.encode())# バイト単位の文字列幅
 
     def open(self):
-        self.printLine()
+        self.__printLine()# オーバーライドして定義。printlineで線を引いている。
 
     def print_a(self):
-        print('|' + self.string + '|')
+        print('|' + self.string + '|')# 文字列の前後に|をつけて表示
 
     def close(self):
-        self.printLine()
+        self.__printLine()
 
-    def printLine(self):
+    def __printLine(self):# プライベートメソッド
         print('+', end='')
 
         for _ in range(self.width):
@@ -76,4 +76,4 @@ def main():
 if __name__ == '__main__':
     main()
 
-# なんか微妙にズレるのであとでまたやる
+# なんか微妙にズレるので後でやりなおす
